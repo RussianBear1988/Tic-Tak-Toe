@@ -4,7 +4,6 @@ player = 1
 win = 1
 draw = -1
 running = 0
-stop = 1
 
 game = running
 mark = 'X'
@@ -67,7 +66,6 @@ def CheckWin():
         game=running
 
 print("Первый игрок [X] против Второго игрока [O]\n")
-print()
 print()
 print("Идёт отрисовка игрового поля, пожалуйста, подождите.")
 
