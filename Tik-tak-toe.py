@@ -27,6 +27,22 @@ def CheckPosition(x):
         print("Выбранная позиция уже занята Вторым игроком! Повторите ваш выбор.")
         return False
 
+def check_choice(choice):
+    try:
+        int(choice)
+    except ValueError:
+        print("Вы ввели букву, а не цифру. Попробуйте снова. Мы принимаем значения от 1 до 9.")
+        return False
+    if 1 <= int(choice) <= 9:
+        return True
+    elif int(choice) > 10:
+        print("Вы ввели слишком большое число. Попробуйте снова. Мы принимаем значения от 1 до 9.")
+        return False
+    elif int(choice) < 1:
+        print("Вы ввели слишком маленькое число. Попробуйте снова. Мы принимаем значения от 1 до 9.")
+        return False
+
+
 def CheckWin():
     global game
     if(board[1] == board[2] and board[2] == board[3] and board[1] != ' '):
@@ -63,14 +79,12 @@ while(game == running):
     else:
         print("Ходит второй игрок")
         mark = 'O'
-    try:
-        choice = int(input("Введите число от 1 до 9, чтобы поставить свою фишку: "))
-    except:
-        choice = int(input("Вы ввели некорректное число. Повторите ввод от 1 до 9, чтобы поставить свою фишку: "))
-    if(CheckPosition(choice)):
-        board[choice] = mark
-        player+=1
-        CheckWin()
+    choice = input("Введите число от 1 до 9, чтобы поставить свою фишку: ")
+    if(check_choice(choice)):
+        if(CheckPosition(int(choice))):
+            board[int(choice)] = mark
+            player+=1
+            CheckWin()
 DrawBoard()
 if(game==draw):
     print("Ничья!")
