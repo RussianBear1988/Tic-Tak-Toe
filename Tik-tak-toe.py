@@ -63,10 +63,7 @@ while(game == running):
     else:
         print("Ходит второй игрок")
         mark = 'O'
-    try:
-        choice = int(input("Введите число от 1 до 9, чтобы поставить свою фишку: "))
-    except:
-        choice = int(input("Вы ввели некорректное число. Повторите ввод от 1 до 9, чтобы поставить свою фишку: "))
+    choice = int(input("Введите число от 1 до 9, чтобы поставить свою фишку: "))
     if(CheckPosition(choice)):
         board[choice] = mark
         player+=1
