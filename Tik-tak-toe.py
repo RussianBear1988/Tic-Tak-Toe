@@ -8,7 +8,7 @@ running = 0
 game = running
 mark = 'X'
 
-def DrawBoard():
+def draw_board():
     print(" %c | %c | %c " % (board[1],board[2],board[3]))
     print("___|___|___")
     print(" %c | %c | %c " % (board[4],board[5],board[6]))
@@ -16,7 +16,7 @@ def DrawBoard():
     print(" %c | %c | %c " % (board[7],board[8],board[9]))
     print("   |   |   ")
 
-def CheckPosition(x):
+def check_position(x):
     if(board[x] == ' '):
         return True
     elif (board[x] == 'X'):
@@ -42,7 +42,7 @@ def check_choice(choice):
         return False
 
 
-def CheckWin():
+def check_win():
     global game
     if(board[1] == board[2] and board[2] == board[3] and board[1] != ' '):
         game = win
@@ -61,7 +61,7 @@ def CheckWin():
     elif(board[3] == board[5] and board[5] == board[7] and board[5] != ' '):
         game=win
     elif(board[1]!=' ' and board[2]!=' ' and board[3]!=' ' and board[4]!=' ' and board[5]!=' ' and board[6]!=' ' and board[7]!=' ' and board[8]!=' ' and board[9]!=' '):
-        game=Draw
+        game=draw
     else:
         game=running
 
@@ -70,7 +70,7 @@ print()
 print("Идёт отрисовка игрового поля, пожалуйста, подождите.")
 
 while(game == running):
-    DrawBoard()
+    draw_board()
     if(player % 2 != 0):
         print("Ходит первый игрок")
         mark = 'X'
@@ -79,11 +79,11 @@ while(game == running):
         mark = 'O'
     choice = input("Введите число от 1 до 9, чтобы поставить свою фишку: ")
     if(check_choice(choice)):
-        if(CheckPosition(int(choice))):
+        if(check_position(int(choice))):
             board[int(choice)] = mark
             player+=1
-            CheckWin()
-DrawBoard()
+            check_win()
+draw_board()
 if(game==draw):
     print("Ничья!")
 elif(game==win):
