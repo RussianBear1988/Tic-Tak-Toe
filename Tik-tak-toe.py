@@ -20,8 +20,11 @@ def DrawBoard():
 def CheckPosition(x):
     if(board[x] == ' '):
         return True
+    elif (board[x] == 'X'):
+        print("Выбранная позиция уже занята Первым игроком! Повторите ваш выбор.")
+        return False
     else:
-        print("Выбранная позиция уже занята! Повторите ваш выбор.")
+        print("Выбранная позиция уже занята Вторым игроком! Повторите ваш выбор.")
         return False
 
 def CheckWin():
@@ -47,10 +50,10 @@ def CheckWin():
     else:
         game=running
 
-print("Player 1 [X] --- Player 2 [O]\n")
+print("Первый игрок [X] против Второго игрока [O]\n")
 print()
 print()
-print("Please Wait...")
+print("Идёт отрисовка игрового поля, пожалуйста, подождите.")
 
 while(game == running):
     DrawBoard()
@@ -60,7 +63,10 @@ while(game == running):
     else:
         print("Ходит второй игрок")
         mark = 'O'
-    choice = int(input("Введите число от 1 до 9, чтобы поставить свою фишку: "))
+    try:
+        choice = int(input("Введите число от 1 до 9, чтобы поставить свою фишку: "))
+    except:
+        choice = int(input("Вы ввели некорректное число. Повторите ввод от 1 до 9, чтобы поставить свою фишку: "))
     if(CheckPosition(choice)):
         board[choice] = mark
         player+=1
